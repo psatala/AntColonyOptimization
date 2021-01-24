@@ -1,0 +1,86 @@
+?SNDlib native format; type: network; version: 1.0
+# network nobel-eu
+
+# NODE SECTION
+#
+# <node_id> [(<longitude>, <latitude>)]
+
+NODES (
+  Amsterdam ( 4.51 52.20 )
+  Athens ( 23.42 37.58 )
+  Barcelona ( 2.07 41.22 )
+  Belgrade ( 20.25 44.47 )
+  Berlin ( 13.21 52.31 )
+  Bordeaux ( -0.35 44.51 )
+  Brussels ( 4.20 50.49 )
+  Budapest ( 19.02 47.29 )
+  Copenhagen ( 12.32 55.41 )
+  Dublin ( -6.15 53.21 )
+  Frankfurt ( 8.38 50.07 )
+  Glasgow ( -4.16 55.51 )
+  Hamburg ( 10.00 53.33 )
+  London ( -0.07 51.30 )
+  Lyon ( 4.49 45.43 )
+  Madrid ( -3.42 40.25 )
+  Milan ( 9.11 45.28 )
+  Munich ( 11.33 48.07 )
+  Oslo ( 10.45 59.54 )
+  Paris ( 2.20 48.51 )
+  Prague ( 14.25 50.04 )
+  Rome ( 12.29 41.53 )
+  Stockholm ( 18.03 59.19 )
+  Strasbourg ( 7.45 48.35 )
+  Vienna ( 16.21 48.12 )
+  Warsaw ( 20.59 52.14 )
+  Zagreb ( 15.57 45.48 )
+  Zurich ( 8.32 47.22 )
+)
+
+# LINK SECTION
+#
+# <link_id> ( <source> <target> ) <pre_installed_capacity> <pre_installed_capacity_cost> <routing_cost> <setup_cost> ( {<module_capacity> <module_cost>}* )
+
+LINKS (
+  L1 ( Amsterdam Brussels ) 174
+  L2 ( Amsterdam Glasgow ) 711
+  L3 ( Amsterdam Hamburg ) 366
+  L4 ( Amsterdam London ) 357
+  L5 ( Athens Belgrade ) 808
+  L6 ( Athens Rome ) 1052
+  L7 ( Barcelona Lyon ) 532
+  L8 ( Barcelona Madrid ) 505
+  L9 ( Belgrade Budapest ) 318
+  L10 ( Belgrade Zagreb ) 368
+  L11 ( Berlin Copenhagen ) 355
+  L12 ( Berlin Hamburg ) 256
+  L13 ( Berlin Munich ) 505
+  L14 ( Berlin Prague ) 280
+  L15 ( Berlin Warsaw ) 516
+  L16 ( Bordeaux Madrid ) 554
+  L17 ( Bordeaux Paris ) 499
+  L18 ( Brussels Frankfurt ) 317
+  L19 ( Brussels Paris ) 264
+  L20 ( Budapest Prague ) 444
+  L21 ( Budapest Warsaw ) 545
+  L22 ( Copenhagen Oslo ) 484
+  L23 ( Dublin Glasgow ) 309
+  L24 ( Dublin London ) 464
+  L25 ( Frankfurt Hamburg ) 393
+  L26 ( Frankfurt Munich ) 304
+  L27 ( Frankfurt Strasbourg ) 183
+  L28 ( London Paris ) 343
+  L29 ( Lyon Paris ) 391
+  L30 ( Milan Munich ) 349
+  L31 ( Milan Rome ) 478
+  L32 ( Milan Zurich ) 218
+  L33 ( Munich Vienna ) 355
+  L34 ( Oslo Stockholm ) 417
+  L35 ( Paris Strasbourg ) 397
+  L36 ( Prague Vienna ) 253
+  L37 ( Rome Zagreb ) 518
+  L38 ( Stockholm Warsaw ) 810
+  L39 ( Zurich Lyon ) 334
+  L40 ( Strasbourg Zurich ) 147 
+  L41 ( Vienna Zagreb ) 268
+)
+
