@@ -32,7 +32,7 @@ def input(filepath):
             if len(splitLine) > 5 and readingLinks:
                 link = Link(name=splitLine[0], firstEndpoint=splitLine[2], secondEndpoint=splitLine[3], length=float(splitLine[5]))
                 nodes[link.firstEndpoint].links.append(link)
-                link = Link(name=splitLine[0], firstEndpoint=splitLine[3], secondEndpoint=splitLine[2], length=float(splitLine[5]))
+                link = Link(name=splitLine[0] + "_reverse", firstEndpoint=splitLine[3], secondEndpoint=splitLine[2], length=float(splitLine[5]))
                 nodes[link.firstEndpoint].links.append(link)
                 
 
