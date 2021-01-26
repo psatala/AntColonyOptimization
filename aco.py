@@ -104,5 +104,3 @@ def aco(nodes, startNodeName, endNodeName, mode=DIJKSTRA):
         for j in range(N_ANTS):
             for link in ants[j].listOfLinks:
                 pheromone[link.name] += (Q / ants[j].pathLength)
-
-    pass
