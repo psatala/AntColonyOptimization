@@ -25,7 +25,7 @@ def input(filepath):
             
             #add node
             if len(splitLine) > 4 and readingNodes:
-                node = Node(name=splitLine[0], longitude=float(splitLine[2]), lattitude=float(splitLine[3]))
+                node = Node(name=splitLine[0], longitude=float(splitLine[2]), lattitude=float(splitLine[3]), imgX=int(splitLine[4]), imgY=int(splitLine[5]))
                 nodes[splitLine[0]] = node
 
             #add link

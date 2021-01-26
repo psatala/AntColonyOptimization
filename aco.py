@@ -1,5 +1,6 @@
 from constants import ALPHA, BETA, PHEROMONE_EVAPORATION_COEFFICIENT, PHEROMONE_INITIALIZATION_VALUE, Q, N_EPOCHS, N_ANTS, INFINITY, BFS, DIJKSTRA
 from ant import Ant
+from visualization import Vis
 import numpy as np
 
 def aco(nodes, startNodeName, endNodeName, mode=DIJKSTRA):
@@ -21,7 +22,7 @@ def aco(nodes, startNodeName, endNodeName, mode=DIJKSTRA):
         probabilitiesForAllNodes[key] = None
 
 
-
+    vis = Vis(nodes)
 
     for i in range(N_EPOCHS):
 
@@ -104,3 +105,6 @@ def aco(nodes, startNodeName, endNodeName, mode=DIJKSTRA):
         for j in range(N_ANTS):
             for link in ants[j].listOfLinks:
                 pheromone[link.name] += (Q / ants[j].pathLength)
+
+
+        vis.visualize(pheromone)

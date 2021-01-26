@@ -18,7 +18,7 @@ def main():
     for key, value in distance.items():
         print(str(key) + ": " + str(value))
     
-    aco(nodes, "Warsaw", "Madrid", DIJKSTRA)
+    aco(nodes, "Warsaw", "Bordeaux", DIJKSTRA)
 
 
 
