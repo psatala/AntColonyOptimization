@@ -98,7 +98,8 @@ def main():
         maxPathLength.append(currentMaxPathLength)
 
     #draw plot
-    createSummary(minPathLength, averagePathLength, maxPathLength, optimalSolution, seed, mode)
+    if len(minPathLength) > 0:
+        createSummary(minPathLength, averagePathLength, maxPathLength, optimalSolution, seed, mode)
 
 
 
