@@ -3,7 +3,7 @@ from constants import *
 from datetime import datetime
 
 
-def createSummary(minPathLength, averagePathLength, maxPathLength, optimalSolution, seed, mode):
+def createSummary(minPathLength, averagePathLength, maxPathLength, optimalSolution, seed, metric):
     filename = "results/"+datetime.now().strftime("%Y_%m_%d_%H_%M_%S") + '.png'
     file = open(filename[:-3]+"txt","w")
     file.write("Plot: "+str(filename)+'\n')
@@ -26,8 +26,8 @@ def createSummary(minPathLength, averagePathLength, maxPathLength, optimalSoluti
     file.write('Seed: '+str(seed)+'\n')
     file.close()
 
-    suptitle = "Mode: "
-    if mode == DIJKSTRA:
+    suptitle = "Metric: "
+    if metric == DIJKSTRA:
         suptitle += "Dijkstra,"
     else:
         suptitle += "BFS,"

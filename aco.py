@@ -2,11 +2,11 @@ from constants import *
 from ant import Ant
 import numpy as np
 
-if USE_OPENCV:
+if mode == INTERACTIVE:
     from visualization import Vis
     import cv2
 
-def aco(nodes, startNodeName, endNodeName, mode, vis):
+def aco(nodes, startNodeName, endNodeName, metric, vis):
     
     #ants initialization
     ants = []
@@ -43,8 +43,8 @@ def aco(nodes, startNodeName, endNodeName, mode, vis):
 
             sum = 0.0
             for link in nodes[key].links:
-                #calculate probability for a given link based on mode
-                if mode == DIJKSTRA:
+                #calculate probability for a given link based on metric
+                if metric == DIJKSTRA:
                     chance = (pheromone[link.name] ** ALPHA) * ((1.0 / link.length) ** BETA)
                 else:
                     chance = pheromone[link.name] ** ALPHA
@@ -74,8 +74,8 @@ def aco(nodes, startNodeName, endNodeName, mode, vis):
                 #add link to list
                 ants[j].listOfLinks.append(nodes[currentNodeName].links[indexOfChosenLink])
                 
-                #add distance according to mode
-                if mode == DIJKSTRA:
+                #add distance according to metric
+                if metric == DIJKSTRA:
                     ants[j].pathLength += nodes[currentNodeName].links[indexOfChosenLink].length
                 else:
                     ants[j].pathLength += 1
@@ -111,7 +111,7 @@ def aco(nodes, startNodeName, endNodeName, mode, vis):
             for link in ants[j].listOfLinks:
                 pheromone[link.name] += (Q / ants[j].pathLength)
 
-        if USE_OPENCV:
+        if mode == INTERACTIVE:
             if i < N_EPOCHS-1:
                 if not vis.visualize(pheromone, startNodeName, endNodeName, False):
                     cv2.destroyAllWindows()

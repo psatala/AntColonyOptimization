@@ -106,9 +106,11 @@ class Vis:
                         color = 255
                     cv2.line(tempImg, (self.nodes[link.firstEndpoint].imgX, self.nodes[link.firstEndpoint].imgY),
                                 (self.nodes[link.secondEndpoint].imgX, self.nodes[link.secondEndpoint].imgY), (0, 0, color), int(thickness))
+        cv2.circle(tempImg, (self.nodes[startNodeName].imgX, self.nodes[startNodeName].imgY), 8, (0, 255, 0), -1)
+        cv2.circle(tempImg, (self.nodes[endNodeName].imgX, self.nodes[endNodeName].imgY), 8, (0, 255, 0), -1)
 
-        suptitle = "Mode: "
-        if mode == DIJKSTRA:
+        suptitle = "Metric: "
+        if metric == DIJKSTRA:
             suptitle += "Dijkstra,"
         else:
             suptitle += "BFS,"

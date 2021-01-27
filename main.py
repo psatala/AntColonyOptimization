@@ -9,30 +9,27 @@ import numpy as np
 import random
 import time
 
-if USE_OPENCV:
+if mode == INTERACTIVE:
     from visualization import Vis
     import cv2
 
 def main():
 
-    print("Choose mode:")
-    print("i - interactive city choice")
-    print("r - random city choice")
-    c = input("Mode: ")
-    while c != 'r' and c != 'i':
-        print("Invalid choice - enter either 'r' or 'i'")
+    if mode == INTERACTIVE and SHOW_MAP:
+        print("Choose mode:")
+        print("i - interactive city choice")
+        print("r - random city choice")
         c = input("Mode: ")
-    
-    if c == 'r':
-        randomChoice = True
+        while c != 'r' and c != 'i':
+            print("Invalid choice - enter either 'r' or 'i'")
+            c = input("Mode: ")
+
+        if c == 'r':
+            randomChoice = True
+        else:
+            randomChoice = False
     else:
-        randomChoice = False
-        if not USE_OPENCV:
-            print("OpenCV is required to run interactively - set USE_OPENCV to True")
-            randomChoice = True
-        if not SHOW_MAP:
-            print("Showing the map is required to run interactively - set SHOW_MAP to True")
-            randomChoice = True
+        randomChoice = True
 
     #seed
     if USE_TIME_AS_SEED:
@@ -46,7 +43,7 @@ def main():
     filepath = "nobel-eu.txt"
     nodes = fileinput(filepath)
 
-    if USE_OPENCV:
+    if mode == INTERACTIVE:
         vis = Vis(nodes)
 
 
@@ -67,13 +64,13 @@ def main():
                 break
 
         #calculate optimal
-        if mode == BFS:
+        if metric == BFS:
             distance = bfs(nodes, startNodeName)
         else:
             distance = dijkstra(nodes, startNodeName)
 
         if randomChoice:
-            while startNodeName == endNodeName or (mode == DIJKSTRA and distance[endNodeName] < 1000) or (mode == BFS and distance[endNodeName] < 3):
+            while startNodeName == endNodeName or (metric == DIJKSTRA and distance[endNodeName] < 1000) or (metric == BFS and distance[endNodeName] < 3):
                 endNodeName = random.choice(list(nodes.keys()))
 
         #print info about selected nodes
@@ -82,12 +79,12 @@ def main():
         optimalSolution.append(distance[endNodeName])
 
         #calculate aco
-        if USE_OPENCV:
-            currentMinPathLength, currentAveragePathLength, currentMaxPathLength, ok = aco(nodes, startNodeName, endNodeName, mode, vis)
+        if mode == INTERACTIVE:
+            currentMinPathLength, currentAveragePathLength, currentMaxPathLength, ok = aco(nodes, startNodeName, endNodeName, metric, vis)
             if not ok:
                 break
         else:
-            currentMinPathLength, currentAveragePathLength, currentMaxPathLength, ok = aco(nodes, startNodeName, endNodeName, mode, 0)
+            currentMinPathLength, currentAveragePathLength, currentMaxPathLength, ok = aco(nodes, startNodeName, endNodeName, metric, 0)
 
         if not randomChoice:
             cv2.waitKey(0)
@@ -99,7 +96,7 @@ def main():
 
     #draw plot
     if len(minPathLength) > 0:
-        createSummary(minPathLength, averagePathLength, maxPathLength, optimalSolution, seed, mode)
+        createSummary(minPathLength, averagePathLength, maxPathLength, optimalSolution, seed, metric)
 
 
 
