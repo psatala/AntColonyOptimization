@@ -21,6 +21,10 @@ def aco(nodes, startNodeName, endNodeName, mode=DIJKSTRA):
         probabilitiesForAllNodes[key] = None
 
 
+    #init numpy arrays to store results
+    minPathLength = np.zeros(N_EPOCHS)
+    averagePathLength = np.zeros(N_EPOCHS)
+    maxPathLength = np.zeros(N_EPOCHS)
 
 
     for i in range(N_EPOCHS):
@@ -79,18 +83,16 @@ def aco(nodes, startNodeName, endNodeName, mode=DIJKSTRA):
 
 
         #get statistics
-        minPathLength = INFINITY
-        maxPathLength = -INFINITY
+        minPathLength[i] = INFINITY
+        maxPathLength[i] = -INFINITY
         sumPathLength = 0
 
         for j in range(N_ANTS):
             sumPathLength += ants[j].pathLength
-            minPathLength = min(minPathLength, ants[j].pathLength)
-            maxPathLength = max(maxPathLength, ants[j].pathLength)
+            minPathLength[i] = min(minPathLength[i], ants[j].pathLength)
+            maxPathLength[i] = max(maxPathLength[i], ants[j].pathLength)
 
-        averagePathLength = float(sumPathLength) / float(N_ANTS)
-
-        print(minPathLength, averagePathLength, maxPathLength)
+        averagePathLength[i] = float(sumPathLength) / float(N_ANTS)
 
 
 
@@ -104,3 +106,6 @@ def aco(nodes, startNodeName, endNodeName, mode=DIJKSTRA):
         for j in range(N_ANTS):
             for link in ants[j].listOfLinks:
                 pheromone[link.name] += (Q / ants[j].pathLength)
+
+
+    return minPathLength, averagePathLength, maxPathLength

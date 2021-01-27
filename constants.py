@@ -12,5 +12,8 @@ N_ANTS = 100
 BFS = 0
 DIJKSTRA = 1
 
+#general
+N_RUNS = 100
+
 #other
 INFINITY = 10**10
