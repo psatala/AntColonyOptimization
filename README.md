@@ -17,11 +17,18 @@ In order to find the shortest path between two nodes, two distinct metrics can b
 * each link has weight equal to 1 (compared against BFS algorithm)
 * each link has a different weight, equal to distance in kilometers between two nodes (compared against Dijkstra algorithm)
 
+## Results
+Plots can be viewed in `results` folder.
+
+Video results can be viewed [here](https://drive.google.com/drive/folders/1iGsdGDSe5OubEx_Oh3SCPX77kCdYghwq?usp=sharing).
+
 ## Map of the network
 
 ![map](doc/images/map.png)
 
 
 ## OpenCV installation
+
+OpenCV is required to run map visualization, to install OpenCV run:
 
 `pip3 install opencv-python`
