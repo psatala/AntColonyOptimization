@@ -1,0 +1,6 @@
+Plot: results/2021_01_27_23_05_59.png
+Optimal solution:	3	
+Final shortest path length:	3.0	
+Final average path length:	3.0	
+Final longest path length:	3.0	
+Seed: 7
