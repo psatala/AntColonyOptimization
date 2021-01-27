@@ -7,7 +7,7 @@ class Vis:
         self.path = 'doc/images/visMap1.png'
         self.image = cv2.imread(self.path)
         cv2.namedWindow("Map", cv2.WINDOW_NORMAL)
-        cv2.resizeWindow('Map', 800,800)
+        cv2.resizeWindow('Map', 965,1024)
         for key, value in nodes.items():
             cv2.circle(self.image, (value.imgX, value.imgY), 8, (0, 0, 0), -1)
         self.nodes = nodes
