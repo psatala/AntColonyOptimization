@@ -1,4 +1,4 @@
-from input import input
+from input import input as fileinput
 from bfs import bfs
 from aco import aco
 from dijkstra import dijkstra
@@ -15,6 +15,25 @@ if USE_OPENCV:
 
 def main():
 
+    print("Choose mode:")
+    print("i - interactive city choice")
+    print("r - random city choice")
+    c = input("Mode: ")
+    while c != 'r' and c != 'i':
+        print("Invalid choice - enter either 'r' or 'i'")
+        c = input("Mode: ")
+    
+    if c == 'r':
+        randomChoice = True
+    else:
+        randomChoice = False
+        if not USE_OPENCV:
+            print("OpenCV is required to run interactively - set USE_OPENCV to True")
+            randomChoice = True
+        if not SHOW_MAP:
+            print("Showing the map is required to run interactively - set SHOW_MAP to True")
+            randomChoice = True
+
     #seed
     if USE_TIME_AS_SEED:
         seed = int(round(time.time()))
@@ -25,7 +44,7 @@ def main():
 
     #read from file
     filepath = "nobel-eu.txt"
-    nodes = input(filepath)
+    nodes = fileinput(filepath)
 
     if USE_OPENCV:
         vis = Vis(nodes)
@@ -39,8 +58,13 @@ def main():
     for i in range(N_RUNS):
 
         #select start and end at random (must be different)
-        startNodeName = random.choice(list(nodes.keys()))
-        endNodeName = startNodeName
+        if randomChoice:
+            startNodeName = random.choice(list(nodes.keys()))
+            endNodeName = startNodeName
+        else:
+            startNodeName, endNodeName, ok = vis.getCities()
+            if not ok:
+                break
 
         #calculate optimal
         if mode == BFS:
@@ -48,8 +72,9 @@ def main():
         else:
             distance = dijkstra(nodes, startNodeName)
 
-        while startNodeName == endNodeName or (mode == DIJKSTRA and distance[endNodeName] < 1000) or (mode == BFS and distance[endNodeName] < 3):
-            endNodeName = random.choice(list(nodes.keys()))
+        if randomChoice:
+            while startNodeName == endNodeName or (mode == DIJKSTRA and distance[endNodeName] < 1000) or (mode == BFS and distance[endNodeName] < 3):
+                endNodeName = random.choice(list(nodes.keys()))
 
         #print info about selected nodes
         print(i, startNodeName, endNodeName)
@@ -63,6 +88,9 @@ def main():
                 break
         else:
             currentMinPathLength, currentAveragePathLength, currentMaxPathLength, ok = aco(nodes, startNodeName, endNodeName, mode, 0)
+
+        if not randomChoice:
+            cv2.waitKey(0)
         
         #add to final results
         minPathLength.append(currentMinPathLength)
@@ -70,7 +98,8 @@ def main():
         maxPathLength.append(currentMaxPathLength)
 
     #draw plot
-    createSummary(minPathLength, averagePathLength, maxPathLength, optimalSolution, seed, mode)
+    if len(minPathLength) > 0:
+        createSummary(minPathLength, averagePathLength, maxPathLength, optimalSolution, seed, mode)
 
 
 

@@ -1,0 +1,6 @@
+Plot: results/2021_01_27_23_55_38.png
+Optimal solution:	2316.0	1784.0	2239.0	1509.0	3101.0	3101.0	
+Final shortest path length:	2316.0	1784.0	2244.0	1576.0	3101.0	3101.0	
+Final average path length:	2316.0	1784.0	2254.44	1576.0	3294.62	3462.62	
+Final longest path length:	2316.0	1784.0	2592.0	1576.0	4283.0	5747.0	
+Seed: 7
