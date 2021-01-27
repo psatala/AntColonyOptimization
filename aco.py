@@ -112,8 +112,13 @@ def aco(nodes, startNodeName, endNodeName, mode, vis):
                 pheromone[link.name] += (Q / ants[j].pathLength)
 
         if USE_OPENCV:
-            if not vis.visualize(pheromone, startNodeName, endNodeName):
-                cv2.destroyAllWindows()
-                return minPathLength, averagePathLength, maxPathLength, False
+            if i < N_EPOCHS-1:
+                if not vis.visualize(pheromone, startNodeName, endNodeName, False):
+                    cv2.destroyAllWindows()
+                    return minPathLength, averagePathLength, maxPathLength, False
+            else:
+                if not vis.visualize(pheromone, startNodeName, endNodeName, True):
+                    cv2.destroyAllWindows()
+                    return minPathLength, averagePathLength, maxPathLength, False
 
     return minPathLength, averagePathLength, maxPathLength, True

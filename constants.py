@@ -15,7 +15,7 @@ SEED = 7
 BFS = 0
 DIJKSTRA = 1
 #Choose mode
-mode = BFS
+mode = DIJKSTRA
 
 #general
 N_RUNS = 100
@@ -30,3 +30,4 @@ RECORD_VIDEO = False
 
 IMAGE_WIDTH = 965
 IMAGE_HEIGHT = 1024
+CLICK_PIXEL_DISTANCE = 10
