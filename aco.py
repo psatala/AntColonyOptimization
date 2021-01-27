@@ -1,8 +1,12 @@
-from constants import ALPHA, BETA, PHEROMONE_EVAPORATION_COEFFICIENT, PHEROMONE_INITIALIZATION_VALUE, Q, N_EPOCHS, N_ANTS, INFINITY, BFS, DIJKSTRA
+from constants import *
 from ant import Ant
 import numpy as np
 
-def aco(nodes, startNodeName, endNodeName, mode=DIJKSTRA):
+if USE_OPENCV:
+    from visualization import Vis
+    import cv2
+
+def aco(nodes, startNodeName, endNodeName, mode, vis):
     
     #ants initialization
     ants = []
@@ -107,5 +111,9 @@ def aco(nodes, startNodeName, endNodeName, mode=DIJKSTRA):
             for link in ants[j].listOfLinks:
                 pheromone[link.name] += (Q / ants[j].pathLength)
 
+        if USE_OPENCV:
+            if not vis.visualize(pheromone, startNodeName, endNodeName):
+                cv2.destroyAllWindows()
+                return minPathLength, averagePathLength, maxPathLength, False
 
-    return minPathLength, averagePathLength, maxPathLength
+    return minPathLength, averagePathLength, maxPathLength, True
