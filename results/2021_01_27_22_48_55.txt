@@ -1,0 +1,6 @@
+Plot: results/2021_01_27_22_48_55.png
+Optimal solution:	
+Final shortest path length:	
+Final average path length:	
+Final longest path length:	
+Seed: 7
