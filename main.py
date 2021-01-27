@@ -48,7 +48,7 @@ def main():
         else:
             distance = dijkstra(nodes, startNodeName)
 
-        while startNodeName == endNodeName or distance[endNodeName] < 1000:
+        while startNodeName == endNodeName or (mode == DIJKSTRA and distance[endNodeName] < 1000) or (mode == BFS and distance[endNodeName] < 3):
             endNodeName = random.choice(list(nodes.keys()))
 
         #print info about selected nodes
@@ -60,7 +60,7 @@ def main():
         if USE_OPENCV:
             currentMinPathLength, currentAveragePathLength, currentMaxPathLength, ok = aco(nodes, startNodeName, endNodeName, mode, vis)
             if not ok:
-                return
+                break
         else:
             currentMinPathLength, currentAveragePathLength, currentMaxPathLength, ok = aco(nodes, startNodeName, endNodeName, mode, 0)
         

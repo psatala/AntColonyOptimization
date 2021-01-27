@@ -15,7 +15,7 @@ SEED = 7
 BFS = 0
 DIJKSTRA = 1
 #Choose mode
-mode = DIJKSTRA
+mode = BFS
 
 #general
 N_RUNS = 100
@@ -26,7 +26,7 @@ INFINITY = 10**10
 #Requires OpenCV:
 USE_OPENCV = True
 SHOW_MAP = True
-RECORD_VIDEO = True
+RECORD_VIDEO = False
 
 IMAGE_WIDTH = 965
 IMAGE_HEIGHT = 1024

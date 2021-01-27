@@ -8,19 +8,19 @@ def createSummary(minPathLength, averagePathLength, maxPathLength, optimalSoluti
     file = open(filename[:-3]+"txt","w")
     file.write("Plot: "+str(filename)+'\n')
     file.write("Optimal solution:\t")
-    for i in range(N_RUNS):
+    for i in range(len(minPathLength)):
         file.write(str(optimalSolution[i])+"\t")
     file.write('\n')
     file.write("Final shortest path length:\t")
-    for i in range(N_RUNS):
+    for i in range(len(minPathLength)):
         file.write(str(minPathLength[i][N_EPOCHS-1])+"\t")
     file.write('\n')
     file.write("Final average path length:\t")
-    for i in range(N_RUNS):
+    for i in range(len(minPathLength)):
         file.write(str(averagePathLength[i][N_EPOCHS-1])+"\t")
     file.write('\n')
     file.write("Final longest path length:\t")
-    for i in range(N_RUNS):
+    for i in range(len(minPathLength)):
         file.write(str(maxPathLength[i][N_EPOCHS-1])+"\t")
     file.write('\n')
     file.write('Seed: '+str(seed)+'\n')
@@ -45,7 +45,7 @@ def plotSummary(min, avgg, max, optimal, suptitle, filename):
     opt = [1 for i in range(N_EPOCHS)]
 
     #normalize
-    for i in range(N_RUNS):
+    for i in range(len(min)):
         for j in range(N_EPOCHS):
             min[i][j] /= optimal[i]
             avgg[i][j] /= optimal[i]
@@ -63,7 +63,7 @@ def plotSummary(min, avgg, max, optimal, suptitle, filename):
     plt.xlabel('Epoch')
     plt.ylim(0.8, 3)
     plt.ylabel('Path length') 
-    plt.title('Average of '+str(N_RUNS)+' runs with a population of '+str(N_ANTS)+' ants')
+    plt.title('Average of '+str(len(min))+' runs with a population of '+str(N_ANTS)+' ants')
     plt.suptitle(suptitle)
     plt.legend()
     savePlot(plt, filename)
