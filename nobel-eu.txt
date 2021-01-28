@@ -2,8 +2,6 @@
 # network nobel-eu
 
 # NODE SECTION
-#
-# <node_id> [(<longitude>, <latitude>)]
 
 NODES (
   Amsterdam ( 4.51 52.20 426 470 )
@@ -37,8 +35,6 @@ NODES (
 )
 
 # LINK SECTION
-#
-# <link_id> ( <source> <target> ) <pre_installed_capacity> <pre_installed_capacity_cost> <routing_cost> <setup_cost> ( {<module_capacity> <module_cost>}* )
 
 LINKS (
   L1 ( Amsterdam Brussels ) 174
