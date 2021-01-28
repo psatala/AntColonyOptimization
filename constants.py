@@ -1,6 +1,6 @@
 #aco
 ALPHA = 1.0
-BETA = 0.0
+BETA = 1.0
 PHEROMONE_EVAPORATION_COEFFICIENT = 0.9
 PHEROMONE_INITIALIZATION_VALUE = 1.0
 Q = 1.0
@@ -15,7 +15,7 @@ SEED = 7
 BFS = 0
 DIJKSTRA = 1
 #Choose mode
-mode = DIJKSTRA
+mode = BFS
 
 #general
 N_RUNS = 25
