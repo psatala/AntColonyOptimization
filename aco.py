@@ -53,7 +53,10 @@ def aco(nodes, startNodeName, endNodeName, metric, vis):
                 sum += chance
 
             for j in range(len(probabilitiesForCurrentNode)):
-                probabilitiesForCurrentNode[j] /= sum
+                if sum != 0:
+                    probabilitiesForCurrentNode[j] /= sum
+                else:
+                    probabilitiesForCurrentNode[j] = 1.0 / len(nodes[key].links)
 
             probabilitiesForAllNodes[key] = probabilitiesForCurrentNode
 

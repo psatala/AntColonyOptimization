@@ -11,7 +11,7 @@ TEST = 1
 
 # Main settings
 mode = INTERACTIVE
-N_RUNS = 100
+N_RUNS = 25
 metric = DIJKSTRA
 
 USE_TIME_AS_SEED = False
